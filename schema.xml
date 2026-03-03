@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema name="ultimate_platform" version="1.6">
+
+  <!-- Unique Key -->
+  <uniqueKey>id</uniqueKey>
+
+  <!-- Field Types -->
+  <types>
+    <fieldType name="string" class="solr.StrField" sortMissingLast="true" />
+    <fieldType name="text_general" class="solr.TextField" positionIncrementGap="100">
+      <analyzer type="index">
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+        <filter class="solr.StopFilterFactory"/>
+        <filter class="solr.SnowballPorterFilterFactory" language="English"/>
+      </analyzer>
+      <analyzer type="query">
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+        <filter class="solr.StopFilterFactory"/>
+        <filter class="solr.SnowballPorterFilterFactory" language="English"/>
+      </analyzer>
+    </fieldType>
+    <fieldType name="text_arvr" class="solr.TextField" positionIncrementGap="100">
+      <analyzer type="index">
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+        <filter class="solr.EdgeNGramFilterFactory" minGramSize="2" maxGramSize="15"/>
+      </analyzer>
+      <analyzer type="query">
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+      </analyzer>
+    </fieldType>
+    <fieldType name="text_ai" class="solr.TextField" positionIncrementGap="100">
+      <analyzer type="index">
+        <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+        <filter class="solr.StopFilterFactory"/>
+      </analyzer>
+      <analyzer type="query">
+        <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+      </analyzer>
+    </fieldType>
+    <fieldType name="text_multilang" class="solr.TextField" multiValued="true">
+      <analyzer type="index">
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+        <filter class="solr.StopFilterFactory"/>
+      </analyzer>
+      <analyzer type="query">
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+      </analyzer>
+    </fieldType>
+    <fieldType name="date" class="solr.TrieDateField" precisionStep="0" positionIncrementGap="0"/>
+    <fieldType name="boolean" class="solr.BoolField"/>
+    <fieldType name="float" class="solr.TrieFloatField" precisionStep="0" positionIncrementGap="0"/>
+    <fieldType name="int" class="solr.TrieIntField" precisionStep="0" positionIncrementGap="0"/>
+    <fieldType name="location" class="solr.LatLonPointSpatialField" docValues="true"/>
+  </types>
+
+  <!-- Fields -->
+  <fields>
+    <!-- Core -->
+    <field name="id" type="string" indexed="true" stored="true" required="true"/>
+    <field name="title" type="text_general" indexed="true" stored="true"/>
+    <field name="description" type="text_general" indexed="true" stored="true"/>
+    <field name="category" type="string" indexed="true" stored="true"/>
+    <field name="tags" type="text_multilang" indexed="true" stored="true" multiValued="true"/>
+    <field name="created_at" type="date" indexed="true" stored="true"/>
+    <field name="updated_at" type="date" indexed="true" stored="true"/>
+    <field name="is_active" type="boolean" indexed="true" stored="true"/>
+
+    <!-- AI -->
+    <field name="ai_prompt" type="text_ai" indexed="true" stored="true"/>
+    <field name="ai_response" type="text_ai" indexed="true" stored="true"/>
+    <field name="ai_model" type="string" indexed="true" stored="true"/>
+    <field name="ai_confidence" type="float" indexed="true" stored="true"/>
+
+    <!-- AR/VR -->
+    <field name="ar_model_url" type="string" indexed="true" stored="true"/>
+    <field name="vr_scene_url" type="string" indexed="true" stored="true"/>
+    <field name="ar_tags" type="text_arvr" indexed="true" stored="true" multiValued="true"/>
+    <field name="vr_tags" type="text_arvr" indexed="true" stored="true" multiValued="true"/>
+
+    <!-- E-Commerce -->
+    <field name="price" type="float" indexed="true" stored="true"/>
+    <field name="currency" type="string" indexed="true" stored="true"/>
+    <field name="stock" type="int" indexed="true" stored="true"/>
+    <field name="sku" type="string" indexed="true" stored="true"/>
+    <field name="product_url" type="string" indexed="true" stored="true"/>
+    <field name="discount" type="float" indexed="true" stored="true"/>
+    <field name="rating" type="float" indexed="true" stored="true"/>
+    <field name="review_count" type="int" indexed="true" stored="true"/>
+    <field name="availability" type="string" indexed="true" stored="true"/>
+    <field name="categories_hierarchy" type="text_multilang" indexed="true" stored="true" multiValued="true"/>
+
+    <!-- 3DPoD / PoD -->
+    <field name="3dpod_model_url" type="string" indexed="true" stored="true"/>
+    <field name="3dpod_materials" type="text_multilang" indexed="true" stored="true" multiValued="true"/>
+    <field name="3dpod_colors" type="text_multilang" indexed="true" stored="true" multiValued="true"/>
+    <field name="3dpod_price" type="float" indexed="true" stored="true"/>
+    <field name="3dpod_dimensions" type="text_general" indexed="true" stored="true"/>
+    <field name="3dpod_tags" type="text_arvr" indexed="true" stored="true" multiValued="true"/>
+    <field name="3dpod_availability" type="string" indexed="true" stored="true"/>
+
+    <!-- Gamification -->
+    <field name="xp_points" type="int" indexed="true" stored="true"/>
+    <field name="badges" type="text_multilang" indexed="true" stored="true" multiValued="true"/>
+    <field name="level" type="int" indexed="true" stored="true"/>
+    <field name="leaderboard_rank" type="int" indexed="true" stored="true"/>
+    <field name="quests_completed" type="int" indexed="true" stored="true"/>
+    <field name="achievements" type="text_multilang" indexed="true" stored="true" multiValued="true"/>
+
+    <!-- SEO / Structured Data -->
+    <field name="meta_title" type="string" indexed="true" stored="true"/>
+    <field name="meta_description" type="string" indexed="true" stored="true"/>
+    <field name="meta_keywords" type="text_multilang" indexed="true" stored="true" multiValued="true"/>
+    <field name="og_image" type="string" indexed="true" stored="true"/>
+    <field name="twitter_card" type="string" indexed="true" stored="true"/>
+    <field name="canonical_url" type="string" indexed="true" stored="true"/>
+    <field name="breadcrumb_paths" type="text_multilang" indexed="true" stored="true" multiValued="true"/>
+  </fields>
+
+  <!-- Dynamic Fields -->
+  <dynamicField name="*_txt" type="text_general" indexed="true" stored="true"/>
+  <dynamicField name="*_str" type="string" indexed="true" stored="true"/>
+  <dynamicField name="*_flt" type="float" indexed="true" stored="true"/>
+  <dynamicField name="*_int" type="int" indexed="true" stored="true"/>
+  <dynamicField name="*_bool" type="boolean" indexed="true" stored="true"/>
+  <dynamicField name="*_date" type="date" indexed="true" stored="true"/>
+  <dynamicField name="*_loc" type="location" indexed="true" stored="true"/>
+
+  <!-- Copy Fields -->
+  <copyField source="title" dest="text"/>
+  <copyField source="description" dest="text"/>
+  <copyField source="tags" dest="text"/>
+  <copyField source="ar_tags" dest="text"/>
+  <copyField source="vr_tags" dest="text"/>
+  <copyField source="3dpod_tags" dest="text"/>
+  <copyField source="badges" dest="text"/>
+  <copyField source="achievements" dest="text"/>
+  <copyField source="meta_keywords" dest="text"/>
+</schema>

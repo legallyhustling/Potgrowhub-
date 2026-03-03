@@ -1,0 +1,1500 @@
+[
+  {
+    "intent_name": "pod_custom_shape_tool + shape_library_help",
+    "intent_description": "Guide users in using the custom shape tool and navigating the available shape library.",
+    "category": "pod_design_combo",
+    "required_entities": ["project_type"],
+    "optional_entities": ["preferred_shape_style"],
+    "trigger_phrases": [
+      "How to use shape tool",
+      "Custom shape help",
+      "Shape library access",
+      "Add custom cut shape",
+      "Design outline tool guide"
+    ],
+    "guardrails": [
+      "Provide editor guidance only",
+      "Do not modify user files directly"
+    ],
+    "response_structure": {
+      "acknowledgment": "Confirm design goal",
+      "tool_walkthrough": "Explain shape selection and customization",
+      "optimization_tip": "Suggest sizing and alignment best practices",
+      "next_step": "Encourage preview validation"
+    },
+    "follow_up_routes": [
+      "pod_layer_transparency + opacity_adjust"
+    ]
+  },
+  {
+    "intent_name": "beginner_vape_pen_setup + fill_instruct",
+    "intent_description": "Provide beginner guidance on setting up and filling a vape pen safely.",
+    "category": "education_combo",
+    "required_entities": ["vape_type"],
+    "optional_entities": ["oil_type"],
+    "trigger_phrases": [
+      "How do I set up my vape pen?",
+      "Filling instructions",
+      "Beginner vape help",
+      "First time vape setup",
+      "How to load cartridge?"
+    ],
+    "guardrails": [
+      "Focus on manufacturer-safe guidance",
+      "No unsafe modification advice"
+    ],
+    "response_structure": {
+      "acknowledgment": "Confirm beginner status",
+      "setup_steps": "Explain assembly and fill basics",
+      "safety_tip": "Mention priming and avoiding overfill",
+      "next_step": "Suggest maintenance tips"
+    },
+    "follow_up_routes": [
+      "vape_pen_maintenance"
+    ]
+  },
+  {
+    "intent_name": "slang_explanation_terp_sauce + sauce_vs_shatter",
+    "intent_description": "Explain terp sauce and compare it to shatter concentrates.",
+    "category": "education_combo",
+    "required_entities": [],
+    "optional_entities": ["experience_level"],
+    "trigger_phrases": [
+      "What is terp sauce?",
+      "Sauce vs shatter",
+      "Explain terpene sauce",
+      "Why is sauce runny?",
+      "Difference between sauce and shatter"
+    ],
+    "guardrails": [
+      "Educational explanation only",
+      "No extraction instructions"
+    ],
+    "response_structure": {
+      "acknowledgment": "Confirm curiosity",
+      "definition": "Describe terp sauce consistency and composition",
+      "comparison": "Contrast with shatter structure and terp retention",
+      "next_step": "Offer storage tips"
+    },
+    "follow_up_routes": [
+      "slang_explanation_full_melt + melt_test_guide"
+    ]
+  },
+  {
+    "intent_name": "upload_plant_mold_pic + salvage_advice",
+    "intent_description": "Review uploaded plant mold image and provide general guidance on next steps.",
+    "category": "grow_review_combo",
+    "required_entities": ["image_file"],
+    "optional_entities": ["growth_stage"],
+    "trigger_phrases": [
+      "Is this mold?",
+      "Plant mold photo",
+      "Can I save this?",
+      "White fuzz on buds",
+      "Mold identification help"
+    ],
+    "guardrails": [
+      "General plant health guidance only",
+      "Advise safety and disposal when necessary"
+    ],
+    "response_structure": {
+      "acknowledgment": "Confirm upload",
+      "analysis": "Describe visible mold indicators",
+      "salvage_guidance": "Explain when removal vs disposal is safest",
+      "next_step": "Recommend humidity prevention steps"
+    },
+    "follow_up_routes": [
+      "vr_humidity_control + ideal_range_advice"
+    ]
+  },
+  {
+    "intent_name": "strain_recommendation_road_trip + no_drowsy_rec",
+    "intent_description": "Suggest strains suitable for road trips that avoid heavy sedation.",
+    "category": "strain_support_combo",
+    "required_entities": ["tolerance_level"],
+    "optional_entities": ["flavor_preference"],
+    "trigger_phrases": [
+      "Best strain for road trip",
+      "No sleepy strain please",
+      "Energetic travel strain",
+      "Stay alert but chill",
+      "Uplifting travel vibe"
+    ],
+    "guardrails": [
+      "No impairment endorsement for driving",
+      "Avoid medical claims"
+    ],
+    "response_structure": {
+      "acknowledgment": "Confirm vibe",
+      "recommendation": "Suggest uplifting terp profiles",
+      "responsibility_note": "Encourage legal and safe use",
+      "next_step": "Suggest portable consumption options"
+    },
+    "follow_up_routes": [
+      "strain_recommendation_energy + vape_pen_recommendation"
+    ]
+  },
+  {
+    "intent_name": "slang_explanation_full_melt + melt_test_guide",
+    "intent_description": "Explain full melt concentrate and describe what the melt test indicates.",
+    "category": "education_combo",
+    "required_entities": [],
+    "optional_entities": ["experience_level"],
+    "trigger_phrases": [
+      "What is full melt?",
+      "Full melt meaning",
+      "Melt test guide",
+      "How do you test melt quality?",
+      "Bubble hash full melt?"
+    ],
+    "guardrails": [
+      "Educational info only",
+      "No unsafe consumption techniques"
+    ],
+    "response_structure": {
+      "acknowledgment": "Confirm inquiry",
+      "definition": "Explain full melt characteristics",
+      "melt_test": "Describe how quality is assessed visually",
+      "next_step": "Provide storage advice"
+    },
+    "follow_up_routes": [
+      "slang_explanation_terp_sauce + sauce_vs_shatter"
+    ]
+  },
+  {
+    "intent_name": "order_subscription_pause + resume_later_help",
+    "intent_description": "Assist users in pausing and resuming their subscription orders.",
+    "category": "order_support_combo",
+    "required_entities": ["subscription_id"],
+    "optional_entities": ["resume_date"],
+    "trigger_phrases": [
+      "Pause my subscription",
+      "Resume subscription later",
+      "Skip next shipment",
+      "Subscription hold",
+      "Restart my deliveries"
+    ],
+    "guardrails": [
+      "Follow subscription policy",
+      "Do not auto-resume without confirmation"
+    ],
+    "response_structure": {
+      "acknowledgment": "Confirm subscription request",
+      "pause_steps": "Explain how to pause",
+      "resume_steps": "Explain how to restart",
+      "next_step": "Confirm email notification"
+    },
+    "follow_up_routes": [
+      "order_subscription_setup"
+    ]
+  },
+  {
+    "intent_name": "strain_recommendation_sleep_aid",
+    "intent_description": "Suggest strains commonly associated with relaxing nighttime effects.",
+    "category": "strain_support",
+    "required_entities": ["tolerance_level"],
+    "optional_entities": ["format_preference"],
+    "trigger_phrases": [
+      "Best strain for sleep",
+      "Nighttime cannabis rec",
+      "Help me unwind",
+      "Sleepy strain suggestion",
+      "Bedtime strain"
+    ],
+    "guardrails": [
+      "Avoid medical claims",
+      "Encourage responsible use"
+    ],
+    "response_structure": {
+      "acknowledgment": "Confirm nighttime goal",
+      "recommendation": "Suggest calming terpene-forward profiles",
+      "dosage_note": "Mention gradual dosing",
+      "next_step": "Offer edible vs inhalation comparison"
+    },
+    "follow_up_routes": [
+      "beginner_edible_safety + onset_time_explain"
+    ]
+  },
+  {
+    "intent_name": "strain_recommendation_focus_productivity",
+    "intent_description": "Recommend strains commonly associated with focus and mental clarity.",
+    "category": "strain_support",
+    "required_entities": ["tolerance_level"],
+    "optional_entities": ["activity_type"],
+    "trigger_phrases": [
+      "Focus strain",
+      "Productivity cannabis",
+      "Clear headed high",
+      "Work session strain",
+      "Study strain suggestion"
+    ],
+    "guardrails": [
+      "Avoid medical claims",
+      "Encourage moderate use"
+    ],
+    "response_structure": {
+      "acknowledgment": "Confirm productivity goal",
+      "recommendation": "Suggest terp profiles linked to alertness",
+      "caution_note": "Note overstimulation risk",
+      "next_step": "Offer dosage timing advice"
+    },
+    "follow_up_routes": [
+      "strain_recommendation_gaming + focus_no_fatigue"
+    ]
+  },
+  {
+    "intent_name": "strain_recommendation_date_night_romance",
+    "intent_description": "Recommend strains commonly associated with relaxation and social warmth for date night.",
+    "category": "strain_support",
+    "required_entities": ["tolerance_level"],
+    "optional_entities": ["flavor_preference"],
+    "trigger_phrases": [
+      "Date night strain",
+      "Romantic cannabis rec",
+      "Social and intimate vibe",
+      "Chill but not sleepy",
+      "Couples strain suggestion"
+    ],
+    "guardrails": [
+      "Avoid medical claims",
+      "Encourage responsible adult use"
+    ],
+    "response_structure": {
+      "acknowledgment": "Confirm mood goal",
+      "recommendation": "Suggest balanced hybrid terp profiles",
+      "experience_tip": "Mention moderation for comfort",
+      "next_step": "Suggest pairing ideas"
+    },
+    "follow_up_routes": [
+      "strain_recommendation_social_euphoria"
+    ]
+  }
+]
+
+[
+  {
+    "intent_name": "strain_recommendation_festival_energy",
+    "intent_description": "Recommend strains commonly associated with energetic, social, festival-friendly effects.",
+    "category": "strain_support",
+    "required_entities": ["tolerance_level"],
+    "optional_entities": ["flavor_preference", "duration_preference"],
+    "trigger_phrases": [
+      "Best strain for a festival",
+      "High energy strain",
+      "Concert cannabis rec",
+      "Uplifting party strain",
+      "Something for dancing all night"
+    ],
+    "guardrails": [
+      "Avoid medical claims",
+      "Encourage hydration and responsible use"
+    ],
+    "response_structure": {
+      "acknowledgment": "Confirm high-energy social goal",
+      "recommendation": "Suggest terpene profiles linked to uplift and clarity",
+      "caution_note": "Mention overstimulation risk",
+      "next_step": "Offer portable format suggestions"
+    },
+    "follow_up_routes": [
+      "beginner_dosing_safety"
+    ]
+  },
+  {
+    "intent_name": "slang_explanation_gas",
+    "intent_description": "Explain the cannabis slang term 'gas' and its meaning.",
+    "category": "education",
+    "required_entities": [],
+    "optional_entities": ["experience_level"],
+    "trigger_phrases": [
+      "What does gas mean?",
+      "Why do people call it gas?",
+      "Gas strain meaning",
+      "What is gassy weed?"
+    ],
+    "guardrails": [
+      "Educational explanation only"
+    ],
+    "response_structure": {
+      "acknowledgment": "Confirm curiosity",
+      "definition": "Explain aroma profile and potency implication",
+      "context": "Describe terpene associations",
+      "next_step": "Offer related slang"
+    },
+    "follow_up_routes": [
+      "slang_explanation_loud",
+      "slang_explanation_dank"
+    ]
+  },
+  {
+    "intent_name": "slang_explanation_kief",
+    "intent_description": "Explain what kief is and how it forms.",
+    "category": "education",
+    "required_entities": [],
+    "optional_entities": ["consumption_interest"],
+    "trigger_phrases": [
+      "What is kief?",
+      "Kief meaning",
+      "Powder in my grinder",
+      "What is the dust in weed?"
+    ],
+    "guardrails": [
+      "No enhancement instructions",
+      "Educational info only"
+    ],
+    "response_structure": {
+      "acknowledgment": "Confirm question",
+      "definition": "Explain trichomes and resin glands",
+      "collection": "Describe grinder screen function",
+      "next_step": "Mention storage tips"
+    },
+    "follow_up_routes": [
+      "slang_explanation_rosin"
+    ]
+  },
+  {
+    "intent_name": "slang_explanation_rosin",
+    "intent_description": "Explain what rosin is and how it differs from other concentrates.",
+    "category": "education",
+    "required_entities": [],
+    "optional_entities": ["experience_level"],
+    "trigger_phrases": [
+      "What is rosin?",
+      "Rosin vs resin",
+      "Solventless concentrate meaning",
+      "Why is rosin expensive?"
+    ],
+    "guardrails": [
+      "No extraction instructions",
+      "Educational explanation only"
+    ],
+    "response_structure": {
+      "acknowledgment": "Confirm inquiry",
+      "definition": "Explain solventless pressing concept",
+      "comparison": "Contrast with solvent-based extracts",
+      "next_step": "Mention storage considerations"
+    },
+    "follow_up_routes": [
+      "slang_explanation_shatter"
+    ]
+  },
+  {
+    "intent_name": "slang_explanation_entourage_effect",
+    "intent_description": "Explain the entourage effect theory in cannabis.",
+    "category": "education",
+    "required_entities": [],
+    "optional_entities": ["scientific_interest_level"],
+    "trigger_phrases": [
+      "What is the entourage effect?",
+      "Cannabinoids working together",
+      "Do terpenes change effects?",
+      "Explain entourage theory"
+    ],
+    "guardrails": [
+      "Frame as working theory",
+      "Avoid medical claims"
+    ],
+    "response_structure": {
+      "acknowledgment": "Confirm interest in science",
+      "definition": "Explain cannabinoids + terpenes interaction hypothesis",
+      "context": "Clarify ongoing research status",
+      "next_step": "Offer terpene profile discussion"
+    },
+    "follow_up_routes": [
+      "strain_recommendation_focus_productivity"
+    ]
+  },
+  {
+    "intent_name": "order_status_check",
+    "intent_description": "Assist user in checking current order status.",
+    "category": "order_support",
+    "required_entities": ["order_id"],
+    "optional_entities": ["email"],
+    "trigger_phrases": [
+      "Where is my order?",
+      "Order status?",
+      "Track my shipment",
+      "Has my order shipped?"
+    ],
+    "guardrails": [
+      "Verify identity before revealing details"
+    ],
+    "response_structure": {
+      "acknowledgment": "Confirm request",
+      "verification": "Request order ID if missing",
+      "status_update": "Provide shipment stage",
+      "next_step": "Offer tracking link guidance"
+    },
+    "follow_up_routes": [
+      "order_late_delivery_complaint"
+    ]
+  },
+  {
+    "intent_name": "order_refund_inquiry",
+    "intent_description": "Handle refund eligibility and processing questions.",
+    "category": "order_support",
+    "required_entities": ["order_id"],
+    "optional_entities": ["reason"],
+    "trigger_phrases": [
+      "I want a refund",
+      "Refund status",
+      "Return my order",
+      "Money back request"
+    ],
+    "guardrails": [
+      "Follow refund policy",
+      "Do not guarantee approval"
+    ],
+    "response_structure": {
+      "acknowledgment": "Confirm refund interest",
+      "policy_summary": "Explain eligibility window",
+      "next_steps": "Outline submission process",
+      "timeline": "Clarify review period"
+    },
+    "follow_up_routes": [
+      "order_cancellation_request"
+    ]
+  },
+  {
+    "intent_name": "complaint_app_performance",
+    "intent_description": "Handle complaints about app lag or instability.",
+    "category": "complaint",
+    "required_entities": [],
+    "optional_entities": ["device_type", "os_version"],
+    "trigger_phrases": [
+      "App is lagging",
+      "App keeps crashing",
+      "Slow performance",
+      "App freezing"
+    ],
+    "guardrails": [
+      "Do not blame user",
+      "Provide troubleshooting steps"
+    ],
+    "response_structure": {
+      "acknowledgment": "Validate frustration",
+      "troubleshooting": "Suggest cache clear, update, restart",
+      "escalation": "Offer bug report submission",
+      "next_step": "Ask for device info if needed"
+    },
+    "follow_up_routes": [
+      "bug_report_submission"
+    ]
+  },
+  {
+    "intent_name": "eco_regenerative_vs_organic",
+    "intent_description": "Explain the difference between regenerative and organic cultivation.",
+    "category": "eco_education",
+    "required_entities": [],
+    "optional_entities": ["depth_level"],
+    "trigger_phrases": [
+      "Regenerative vs organic",
+      "What is regenerative farming?",
+      "Organic difference?",
+      "Sustainable soil methods?"
+    ],
+    "guardrails": [
+      "Avoid certification misrepresentation"
+    ],
+    "response_structure": {
+      "acknowledgment": "Confirm sustainability interest",
+      "definition": "Explain organic standards",
+      "contrast": "Explain regenerative soil rebuilding focus",
+      "next_step": "Mention long-term ecosystem impact"
+    },
+    "follow_up_routes": [
+      "eco_carbon_footprint_question"
+    ]
+  },
+  {
+    "intent_name": "cbd_vs_thc_difference",
+    "intent_description": "Explain the difference between CBD and THC.",
+    "category": "education",
+    "required_entities": [],
+    "optional_entities": ["experience_level"],
+    "trigger_phrases": [
+      "CBD vs THC",
+      "Difference between CBD and THC",
+      "Does CBD get you high?",
+      "THC psychoactive?"
+    ],
+    "guardrails": [
+      "Avoid medical claims",
+      "Stay neutral and educational"
+    ],
+    "response_structure": {
+      "acknowledgment": "Confirm educational intent",
+      "definition": "Explain psychoactivity difference",
+      "mechanism": "Briefly describe receptor interaction",
+      "next_step": "Mention full-spectrum concept"
+    },
+    "follow_up_routes": [
+      "slang_explanation_entourage_effect"
+    ]
+  },
+  {
+    "intent_name": "beginner_dosing_safety",
+    "intent_description": "Provide general safety guidance for new cannabis users.",
+    "category": "education",
+    "required_entities": ["format_type"],
+    "optional_entities": ["tolerance_level"],
+    "trigger_phrases": [
+      "How much should I take?",
+      "Beginner dose?",
+      "First time using cannabis",
+      "Safe starting amount?"
+    ],
+    "guardrails": [
+      "Avoid medical dosing",
+      "Encourage gradual approach"
+    ],
+    "response_structure": {
+      "acknowledgment": "Confirm beginner status",
+      "principle": "Start low and go slow guidance",
+      "format_note": "Explain inhalation vs edible onset difference",
+      "next_step": "Encourage safe environment"
+    },
+    "follow_up_routes": [
+      "strain_recommendation_sleep_aid"
+    ]
+  }
+]
+
+
+
+
+[
+  {
+    "intent_name": "ai_budtender_strain_recommendation",
+    "intent_description": "AI budtender provides personalized strain suggestions based on user preferences and tolerance.",
+    "category": "ai_budtender_core",
+    "required_entities": ["desired_effect", "tolerance_level"],
+    "optional_entities": ["flavor_preference", "time_of_day", "consumption_format"],
+    "trigger_phrases": [
+      "Recommend me a strain",
+      "What should I smoke?",
+      "Best strain for me",
+      "Personalized cannabis suggestion",
+      "AI budtender pick"
+    ],
+    "guardrails": [
+      "Avoid medical claims",
+      "Encourage responsible and legal use"
+    ],
+    "response_structure": {
+      "acknowledgment": "Reflect user preference",
+      "recommendation": "Suggest terpene-forward profiles and strain types",
+      "reasoning": "Explain why based on effects and tolerance",
+      "next_step": "Offer alternative option"
+    },
+    "follow_up_routes": [
+      "ai_budtender_effect_explanation"
+    ]
+  },
+  {
+    "intent_name": "ai_budtender_mood_based_suggestion",
+    "intent_description": "Provide suggestions based primarily on current emotional state.",
+    "category": "ai_budtender_core",
+    "required_entities": ["current_mood"],
+    "optional_entities": ["energy_level", "social_context"],
+    "trigger_phrases": [
+      "I'm feeling stressed",
+      "Match my mood",
+      "What fits this vibe?",
+      "Mood-based strain",
+      "Something for how I feel"
+    ],
+    "guardrails": [
+      "Avoid therapeutic claims",
+      "Frame suggestions as experiential, not medical"
+    ],
+    "response_structure": {
+      "acknowledgment": "Validate emotional state",
+      "mapping": "Translate mood into terpene/effect profile",
+      "recommendation": "Suggest strain style",
+      "next_step": "Offer dosage caution"
+    },
+    "follow_up_routes": [
+      "ai_budtender_dosing_guidance_low_tolerance"
+    ]
+  },
+  {
+    "intent_name": "ai_budtender_effect_explanation",
+    "intent_description": "Explain expected effects of a specific strain or profile.",
+    "category": "ai_budtender_core",
+    "required_entities": ["strain_name_or_profile"],
+    "optional_entities": ["experience_level"],
+    "trigger_phrases": [
+      "What does this strain feel like?",
+      "Explain the effects",
+      "What should I expect?",
+      "How does this hit?"
+    ],
+    "guardrails": [
+      "Avoid guaranteed outcomes",
+      "Avoid medical promises"
+    ],
+    "response_structure": {
+      "acknowledgment": "Confirm strain reference",
+      "effect_profile": "Describe common experiential effects",
+      "variability_note": "Explain individual differences",
+      "next_step": "Offer terpene breakdown"
+    },
+    "follow_up_routes": [
+      "ai_budtender_terpene_profile_query"
+    ]
+  },
+  {
+    "intent_name": "ai_budtender_persona_consistency_check",
+    "intent_description": "Ensure AI tone and persona remain consistent with brand voice.",
+    "category": "ai_budtender_system",
+    "required_entities": [],
+    "optional_entities": ["previous_response_reference"],
+    "trigger_phrases": [
+      "Stay in character",
+      "That doesn't sound like you",
+      "Persona check",
+      "Keep the budtender vibe"
+    ],
+    "guardrails": [
+      "Maintain brand-safe tone",
+      "Avoid inappropriate slang"
+    ],
+    "response_structure": {
+      "acknowledgment": "Recognize tone correction",
+      "realignment": "Recalibrate voice",
+      "clarity": "Deliver corrected answer",
+      "next_step": "Continue assistance"
+    },
+    "follow_up_routes": []
+  },
+  {
+    "intent_name": "ai_budtender_compliance_guardrail",
+    "intent_description": "Prevent responses that violate legal or regulatory constraints.",
+    "category": "ai_budtender_system",
+    "required_entities": ["request_type"],
+    "optional_entities": [],
+    "trigger_phrases": [
+      "Can I sell this?",
+      "Is this legal?",
+      "How to bypass age check?",
+      "Ship across state lines?"
+    ],
+    "guardrails": [
+      "Do not provide illegal guidance",
+      "Redirect to legal resources"
+    ],
+    "response_structure": {
+      "acknowledgment": "Recognize legal sensitivity",
+      "boundary_statement": "State limitations clearly",
+      "education": "Provide high-level compliance info",
+      "next_step": "Encourage lawful action"
+    },
+    "follow_up_routes": []
+  },
+  {
+    "intent_name": "ai_budtender_upload_image_analysis",
+    "intent_description": "Analyze uploaded cannabis-related images and provide descriptive feedback.",
+    "category": "ai_budtender_multimodal",
+    "required_entities": ["image_file"],
+    "optional_entities": ["analysis_goal"],
+    "trigger_phrases": [
+      "Check this photo",
+      "What do you see?",
+      "Is this healthy?",
+      "Look at this bud"
+    ],
+    "guardrails": [
+      "No illegal cultivation instruction",
+      "Avoid medical claims"
+    ],
+    "response_structure": {
+      "acknowledgment": "Confirm upload",
+      "visual_analysis": "Describe observable traits",
+      "insight": "Offer general educational feedback",
+      "next_step": "Suggest preventive best practice"
+    },
+    "follow_up_routes": [
+      "ai_budtender_grow_tip_advice"
+    ]
+  },
+  {
+    "intent_name": "ai_budtender_dosing_guidance_low_tolerance",
+    "intent_description": "Provide conservative dosing principles for low tolerance users.",
+    "category": "ai_budtender_safety",
+    "required_entities": ["consumption_format"],
+    "optional_entities": ["body_weight"],
+    "trigger_phrases": [
+      "Low tolerance advice",
+      "I get high easily",
+      "Start small?",
+      "Beginner dose"
+    ],
+    "guardrails": [
+      "No medical dosing claims",
+      "Encourage gradual approach"
+    ],
+    "response_structure": {
+      "acknowledgment": "Confirm sensitivity",
+      "principle": "Start low and go slow",
+      "format_difference": "Explain inhalation vs edible onset",
+      "next_step": "Encourage safe setting"
+    },
+    "follow_up_routes": [
+      "ai_budtender_edible_onset_time_explain"
+    ]
+  },
+  {
+    "intent_name": "ai_budtender_edible_onset_time_explain",
+    "intent_description": "Explain typical edible onset times and duration.",
+    "category": "ai_budtender_education",
+    "required_entities": [],
+    "optional_entities": ["metabolism_note"],
+    "trigger_phrases": [
+      "How long do edibles take?",
+      "When will it kick in?",
+      "Edible timing?",
+      "Why is it delayed?"
+    ],
+    "guardrails": [
+      "Avoid guaranteed timelines",
+      "Encourage patience"
+    ],
+    "response_structure": {
+      "acknowledgment": "Confirm timing question",
+      "onset_range": "Provide general onset window",
+      "duration_note": "Explain longer lasting effect",
+      "next_step": "Warn against stacking doses"
+    },
+    "follow_up_routes": [
+      "ai_budtender_dosing_guidance_low_tolerance"
+    ]
+  }
+]
+
+
+[
+  {
+    "intent_name": "ai_budtender_vape_pen_temp_recommend",
+    "intent_description": "Recommend vape temperature ranges based on desired effects and material type.",
+    "category": "ai_budtender_education",
+    "required_entities": ["material_type", "desired_effect"],
+    "optional_entities": ["device_type"],
+    "trigger_phrases": [
+      "Best vape temp?",
+      "What temperature should I use?",
+      "Low or high heat?",
+      "Temp for flavor vs clouds?"
+    ],
+    "guardrails": [
+      "No unsafe device modification advice",
+      "Avoid combustion guidance"
+    ],
+    "response_structure": {
+      "acknowledgment": "Confirm material and goal",
+      "temp_range": "Provide general temperature bands",
+      "effect_mapping": "Explain flavor vs vapor density tradeoff",
+      "next_step": "Suggest gradual adjustment"
+    },
+    "follow_up_routes": [
+      "ai_budtender_dosing_guidance_low_tolerance"
+    ]
+  },
+  {
+    "intent_name": "ai_budtender_custom_product_idea",
+    "intent_description": "Generate innovative cannabis-related product concepts tailored to user interests.",
+    "category": "ai_budtender_creative",
+    "required_entities": ["user_interest_theme"],
+    "optional_entities": ["budget_range", "sustainability_priority"],
+    "trigger_phrases": [
+      "Give me a product idea",
+      "Invent something cool",
+      "Custom concept suggestion",
+      "What should we build next?"
+    ],
+    "guardrails": [
+      "Avoid illegal product guidance",
+      "Stay compliant with regulations"
+    ],
+    "response_structure": {
+      "acknowledgment": "Reflect creative goal",
+      "concept": "Present innovative product idea",
+      "value_prop": "Explain differentiation",
+      "next_step": "Offer refinement options"
+    },
+    "follow_up_routes": [
+      "ai_budtender_design_inspiration_suggest"
+    ]
+  },
+  {
+    "intent_name": "ai_budtender_error_handling_graceful",
+    "intent_description": "Respond gracefully when system or processing errors occur.",
+    "category": "ai_budtender_system",
+    "required_entities": [],
+    "optional_entities": ["error_code"],
+    "trigger_phrases": [
+      "Something broke",
+      "That didn’t work",
+      "Error message",
+      "System glitch"
+    ],
+    "guardrails": [
+      "Do not blame user",
+      "Offer clear recovery steps"
+    ],
+    "response_structure": {
+      "acknowledgment": "Recognize issue",
+      "clarity": "Explain in simple terms",
+      "recovery_steps": "Offer next action",
+      "next_step": "Confirm retry option"
+    },
+    "follow_up_routes": []
+  },
+  {
+    "intent_name": "ai_budtender_offline_mode_response",
+    "intent_description": "Handle limited functionality when offline.",
+    "category": "ai_budtender_system",
+    "required_entities": [],
+    "optional_entities": ["feature_requested"],
+    "trigger_phrases": [
+      "No internet",
+      "Offline mode",
+      "Connection lost",
+      "Why isn’t this loading?"
+    ],
+    "guardrails": [
+      "Clarify limited capabilities",
+      "Avoid promising unavailable features"
+    ],
+    "response_structure": {
+      "acknowledgment": "Note connectivity issue",
+      "available_features": "List offline-capable tools",
+      "suggestion": "Encourage reconnect for full access",
+      "next_step": "Offer cached content"
+    },
+    "follow_up_routes": [
+      "ai_budtender_pwa_install_prompt_nudge"
+    ]
+  },
+
+  {
+    "intent_name": "ar_tryon_bong_activation",
+    "intent_description": "Initiate AR try-on for bong model visualization.",
+    "category": "ar_feature",
+    "required_entities": ["device_type"],
+    "optional_entities": ["model_id"],
+    "trigger_phrases": [
+      "Try this bong in AR",
+      "Activate AR preview",
+      "See it in my room",
+      "Launch camera preview"
+    ],
+    "guardrails": [
+      "Request camera permission clearly",
+      "Ensure device compatibility"
+    ],
+    "response_structure": {
+      "acknowledgment": "Confirm AR intent",
+      "activation_steps": "Guide camera launch",
+      "placement_tip": "Suggest flat surface detection",
+      "next_step": "Offer scaling controls"
+    },
+    "follow_up_routes": [
+      "ar_tryon_object_scaling_issue"
+    ]
+  },
+  {
+    "intent_name": "ar_tryon_marker_not_detected",
+    "intent_description": "Handle AR marker detection failure.",
+    "category": "ar_troubleshooting",
+    "required_entities": [],
+    "optional_entities": ["lighting_condition"],
+    "trigger_phrases": [
+      "Marker not working",
+      "Can't detect marker",
+      "AR won’t lock on",
+      "Tracking failed"
+    ],
+    "guardrails": [
+      "Provide simple troubleshooting",
+      "Avoid technical overload"
+    ],
+    "response_structure": {
+      "acknowledgment": "Recognize tracking issue",
+      "diagnosis": "Suggest lighting and distance fixes",
+      "alternative": "Offer markerless mode if available",
+      "next_step": "Retry guidance"
+    },
+    "follow_up_routes": [
+      "ar_tryon_lighting_environment_match"
+    ]
+  },
+  {
+    "intent_name": "ar_tryon_object_scaling_issue",
+    "intent_description": "Resolve object appearing too large or small in AR.",
+    "category": "ar_troubleshooting",
+    "required_entities": [],
+    "optional_entities": ["device_type"],
+    "trigger_phrases": [
+      "Too big in AR",
+      "Model looks tiny",
+      "Scale is wrong",
+      "Size adjustment help"
+    ],
+    "guardrails": [
+      "Avoid manual calibration complexity"
+    ],
+    "response_structure": {
+      "acknowledgment": "Confirm scaling issue",
+      "fix_steps": "Guide pinch or slider adjustment",
+      "tip": "Suggest recalibrating surface",
+      "next_step": "Offer placement refinement"
+    },
+    "follow_up_routes": [
+      "ar_tryon_real_world_placement_fail"
+    ]
+  },
+  {
+    "intent_name": "ar_tryon_device_compatibility_check",
+    "intent_description": "Check whether user device supports WebXR/AR features.",
+    "category": "ar_system",
+    "required_entities": ["device_type", "browser_type"],
+    "optional_entities": [],
+    "trigger_phrases": [
+      "Does my phone support AR?",
+      "AR not available",
+      "Compatibility check",
+      "WebXR support?"
+    ],
+    "guardrails": [
+      "Provide factual compatibility info",
+      "Offer fallback preview"
+    ],
+    "response_structure": {
+      "acknowledgment": "Confirm device info",
+      "compatibility_check": "Explain WebXR requirement",
+      "fallback": "Offer 3D viewer alternative",
+      "next_step": "Suggest software update"
+    },
+    "follow_up_routes": [
+      "ar_tryon_safari_webxr_support"
+    ]
+  },
+  {
+    "intent_name": "ar_tryon_performance_optimization",
+    "intent_description": "Improve AR experience performance and reduce lag.",
+    "category": "ar_troubleshooting",
+    "required_entities": [],
+    "optional_entities": ["device_memory_level"],
+    "trigger_phrases": [
+      "AR is laggy",
+      "Choppy preview",
+      "Frame rate low",
+      "Performance issue"
+    ],
+    "guardrails": [
+      "Offer safe optimization steps",
+      "Avoid deep technical jargon"
+    ],
+    "response_structure": {
+      "acknowledgment": "Validate frustration",
+      "quick_fixes": "Close background apps, improve lighting",
+      "optimization_tip": "Lower texture quality if possible",
+      "next_step": "Offer device restart"
+    },
+    "follow_up_routes": [
+      "ar_tryon_battery_impact_warning"
+    ]
+  },
+  {
+    "intent_name": "ar_tryon_share_to_story_button",
+    "intent_description": "Enable sharing AR try-on preview to social story platforms.",
+    "category": "ar_social",
+    "required_entities": ["platform"],
+    "optional_entities": ["caption_text"],
+    "trigger_phrases": [
+      "Share to story",
+      "Post this preview",
+      "Add to Instagram story",
+      "Send AR clip"
+    ],
+    "guardrails": [
+      "Respect privacy settings",
+      "Confirm media permission"
+    ],
+    "response_structure": {
+      "acknowledgment": "Confirm share intent",
+      "export_step": "Guide screenshot or video capture",
+      "platform_redirect": "Open share sheet",
+      "next_step": "Suggest caption enhancement"
+    },
+    "follow_up_routes": [
+      "ai_budtender_sharing_prompt"
+    ]
+  },
+  {
+    "intent_name": "ar_tryon_badge_earn_on_success",
+    "intent_description": "Trigger badge reward when AR interaction completes successfully.",
+    "category": "ar_gamification",
+    "required_entities": ["user_id"],
+    "optional_entities": ["interaction_type"],
+    "trigger_phrases": [
+      "Did I earn a badge?",
+      "AR reward?",
+      "Unlock achievement",
+      "Try-on milestone"
+    ],
+    "guardrails": [
+      "Verify interaction completion"
+    ],
+    "response_structure": {
+      "acknowledgment": "Confirm completion",
+      "badge_announce": "Celebrate unlocked badge",
+      "reward_explain": "Explain benefits",
+      "next_step": "Encourage sharing"
+    },
+    "follow_up_routes": [
+      "ai_budtender_badge_unlock_announce"
+    ]
+  }
+]
+
+
+[
+  {
+    "intent_name": "vr_grow_room_planner_launch",
+    "intent_description": "Launch the VR grow room planning environment.",
+    "category": "vr_grow_core",
+    "required_entities": ["device_type"],
+    "optional_entities": ["room_dimensions"],
+    "trigger_phrases": [
+      "Launch grow planner",
+      "Start VR grow room",
+      "Open grow simulation",
+      "Enter grow mode"
+    ],
+    "guardrails": [
+      "Check VR device compatibility",
+      "Offer non-VR fallback if unsupported"
+    ],
+    "response_structure": {
+      "acknowledgment": "Confirm VR entry",
+      "setup": "Initialize environment calibration",
+      "orientation": "Explain navigation basics",
+      "next_step": "Prompt layout selection"
+    },
+    "follow_up_routes": [
+      "vr_grow_room_multi_plant_layout"
+    ]
+  },
+  {
+    "intent_name": "vr_grow_room_light_placement",
+    "intent_description": "Assist with optimal virtual light positioning.",
+    "category": "vr_grow_education",
+    "required_entities": ["light_type"],
+    "optional_entities": ["canopy_height"],
+    "trigger_phrases": [
+      "Place my lights",
+      "Light too close?",
+      "Best height for lights",
+      "Adjust grow light"
+    ],
+    "guardrails": [
+      "No illegal cultivation expansion advice",
+      "Educational simulation framing only"
+    ],
+    "response_structure": {
+      "acknowledgment": "Confirm light type",
+      "placement_guidance": "Suggest general distance bands",
+      "visual_feedback": "Explain canopy shadow indicators",
+      "next_step": "Offer spectrum adjustment"
+    },
+    "follow_up_routes": [
+      "vr_grow_room_light_spectrum_switch"
+    ]
+  },
+  {
+    "intent_name": "vr_grow_room_humidity_control_sim",
+    "intent_description": "Simulate humidity adjustments and show plant response.",
+    "category": "vr_grow_education",
+    "required_entities": ["growth_stage"],
+    "optional_entities": ["current_humidity"],
+    "trigger_phrases": [
+      "Adjust humidity",
+      "Too humid?",
+      "Dry air problem",
+      "Humidity simulation"
+    ],
+    "guardrails": [
+      "Educational only",
+      "Avoid step-by-step illegal setup scaling"
+    ],
+    "response_structure": {
+      "acknowledgment": "Confirm stage",
+      "range_suggestion": "Provide general humidity bands",
+      "visual_effect": "Show plant stress indicators",
+      "next_step": "Suggest airflow optimization"
+    },
+    "follow_up_routes": [
+      "vr_grow_room_ventilation_path"
+    ]
+  },
+  {
+    "intent_name": "vr_grow_room_yield_projection",
+    "intent_description": "Provide estimated yield projections based on simulated variables.",
+    "category": "vr_grow_analytics",
+    "required_entities": ["plant_count"],
+    "optional_entities": ["light_intensity", "genetic_profile"],
+    "trigger_phrases": [
+      "What’s my yield?",
+      "Projected harvest?",
+      "Estimate output",
+      "Yield simulation"
+    ],
+    "guardrails": [
+      "Frame as estimate only",
+      "Avoid guaranteeing outcomes"
+    ],
+    "response_structure": {
+      "acknowledgment": "Confirm variables",
+      "projection_model": "Provide estimated range",
+      "uncertainty_note": "Explain environmental variability",
+      "next_step": "Suggest optimization tweak"
+    },
+    "follow_up_routes": [
+      "vr_grow_room_harvest_window_estimate"
+    ]
+  },
+  {
+    "intent_name": "vr_grow_room_session_save_load",
+    "intent_description": "Save and reload VR grow room sessions.",
+    "category": "vr_grow_system",
+    "required_entities": ["user_id"],
+    "optional_entities": ["session_name"],
+    "trigger_phrases": [
+      "Save my grow room",
+      "Load previous layout",
+      "Resume session",
+      "Restore scene"
+    ],
+    "guardrails": [
+      "Confirm overwrite before replacing save"
+    ],
+    "response_structure": {
+      "acknowledgment": "Confirm save/load intent",
+      "action": "Execute save or restore",
+      "confirmation": "Display success message",
+      "next_step": "Offer export snapshot"
+    },
+    "follow_up_routes": []
+  },
+
+  {
+    "intent_name": "pod_sticker_design_start",
+    "intent_description": "Start a new custom sticker design project.",
+    "category": "pod_creation",
+    "required_entities": ["sticker_shape"],
+    "optional_entities": ["size_preference"],
+    "trigger_phrases": [
+      "Design a sticker",
+      "Start sticker project",
+      "Create decal",
+      "New sticker layout"
+    ],
+    "guardrails": [
+      "Validate print-safe dimensions"
+    ],
+    "response_structure": {
+      "acknowledgment": "Confirm sticker goal",
+      "canvas_setup": "Initialize correct dimensions",
+      "tool_intro": "Highlight key design tools",
+      "next_step": "Suggest inspiration elements"
+    },
+    "follow_up_routes": [
+      "pod_design_ai_suggest_element"
+    ]
+  },
+  {
+    "intent_name": "pod_3d_model_stl_export",
+    "intent_description": "Guide user through exporting 3D model as STL.",
+    "category": "pod_technical",
+    "required_entities": ["model_id"],
+    "optional_entities": ["scale_preference"],
+    "trigger_phrases": [
+      "Export STL",
+      "Download 3D file",
+      "Prepare for printing",
+      "STL guide"
+    ],
+    "guardrails": [
+      "Validate mesh integrity",
+      "Confirm unit scaling"
+    ],
+    "response_structure": {
+      "acknowledgment": "Confirm model selection",
+      "validation": "Check mesh and manifold status",
+      "export_steps": "Guide STL download",
+      "next_step": "Offer print cost estimate"
+    },
+    "follow_up_routes": [
+      "pod_design_print_cost_estimate"
+    ]
+  },
+  {
+    "intent_name": "pod_print_resolution_guide",
+    "intent_description": "Explain recommended print resolution and DPI standards.",
+    "category": "pod_education",
+    "required_entities": ["product_type"],
+    "optional_entities": ["file_type"],
+    "trigger_phrases": [
+      "Best resolution?",
+      "DPI requirements?",
+      "Blurry print fix",
+      "Image quality help"
+    ],
+    "guardrails": [
+      "Avoid overpromising print results"
+    ],
+    "response_structure": {
+      "acknowledgment": "Confirm product type",
+      "dpi_guidance": "Recommend resolution baseline",
+      "scaling_tip": "Explain raster vs vector difference",
+      "next_step": "Offer preview quality check"
+    },
+    "follow_up_routes": [
+      "pod_preview_quality_check"
+    ]
+  },
+  {
+    "intent_name": "pod_design_ai_suggest_element",
+    "intent_description": "AI suggests design elements to enhance project.",
+    "category": "pod_ai_assist",
+    "required_entities": ["design_theme"],
+    "optional_entities": ["color_palette"],
+    "trigger_phrases": [
+      "Suggest something cool",
+      "Add design element",
+      "AI idea",
+      "What fits this?"
+    ],
+    "guardrails": [
+      "Respect copyright boundaries"
+    ],
+    "response_structure": {
+      "acknowledgment": "Confirm theme",
+      "suggestions": "Offer stylistic enhancements",
+      "placement_tip": "Recommend layout balance",
+      "next_step": "Preview mockup"
+    },
+    "follow_up_routes": [
+      "pod_design_ar_preview_button"
+    ]
+  },
+  {
+    "intent_name": "pod_design_bulk_order_discount",
+    "intent_description": "Provide information about bulk pricing tiers.",
+    "category": "pod_commerce",
+    "required_entities": ["quantity"],
+    "optional_entities": ["product_type"],
+    "trigger_phrases": [
+      "Bulk discount?",
+      "Wholesale price?",
+      "Order 100 units",
+      "Large quantity pricing"
+    ],
+    "guardrails": [
+      "Do not guarantee discount outside policy"
+    ],
+    "response_structure": {
+      "acknowledgment": "Confirm quantity",
+      "pricing_tiers": "Explain volume thresholds",
+      "savings_projection": "Show estimated discount range",
+      "next_step": "Offer custom quote request"
+    },
+    "follow_up_routes": []
+  },
+  {
+    "intent_name": "pod_design_community_contest_submit",
+    "intent_description": "Submit finished design to community contest.",
+    "category": "pod_community",
+    "required_entities": ["design_id"],
+    "optional_entities": ["contest_category"],
+    "trigger_phrases": [
+      "Submit to contest",
+      "Enter design competition",
+      "Community vote",
+      "Upload to contest"
+    ],
+    "guardrails": [
+      "Confirm ownership rights",
+      "Validate submission deadline"
+    ],
+    "response_structure": {
+      "acknowledgment": "Confirm submission intent",
+      "validation": "Check eligibility",
+      "confirmation": "Submit entry",
+      "next_step": "Encourage sharing"
+    },
+    "follow_up_routes": [
+      "pod_design_share_link"
+    ]
+  }
+]
+
+
+[
+  {
+    "intent_name": "ecommerce_cart_add_item",
+    "intent_description": "Add a product to the user's shopping cart.",
+    "category": "ecommerce_cart",
+    "required_entities": ["product_id", "quantity"],
+    "optional_entities": ["variant_id"],
+    "trigger_phrases": [
+      "Add to cart",
+      "Put this in my basket",
+      "I want this item",
+      "Add product"
+    ],
+    "guardrails": [
+      "Check stock availability",
+      "Avoid adding restricted items"
+    ],
+    "response_structure": {
+      "acknowledgment": "Confirm item added",
+      "cart_summary": "Display current cart contents",
+      "next_step": "Prompt checkout or continue shopping"
+    },
+    "follow_up_routes": [
+      "ecommerce_cart_bundle_suggest",
+      "ecommerce_checkout_guest"
+    ]
+  },
+  {
+    "intent_name": "ecommerce_cart_remove_item",
+    "intent_description": "Remove an item from the user's cart.",
+    "category": "ecommerce_cart",
+    "required_entities": ["product_id"],
+    "optional_entities": [],
+    "trigger_phrases": [
+      "Remove from cart",
+      "Delete item",
+      "Take this out",
+      "I changed my mind"
+    ],
+    "guardrails": [
+      "Confirm deletion before removing",
+      "Avoid negative stock errors"
+    ],
+    "response_structure": {
+      "acknowledgment": "Confirm item removed",
+      "cart_summary": "Show updated cart",
+      "next_step": "Suggest alternative items"
+    },
+    "follow_up_routes": [
+      "ecommerce_cart_bundle_suggest"
+    ]
+  },
+  {
+    "intent_name": "ecommerce_cart_bundle_suggest",
+    "intent_description": "Suggest product bundles based on cart contents.",
+    "category": "ecommerce_cart",
+    "required_entities": ["cart_items"],
+    "optional_entities": ["user_preferences"],
+    "trigger_phrases": [
+      "Any bundle deals?",
+      "Suggest combos",
+      "Recommended add-ons",
+      "Bundle this cart"
+    ],
+    "guardrails": [
+      "Avoid suggesting out-of-stock bundles",
+      "Respect user previous exclusions"
+    ],
+    "response_structure": {
+      "acknowledgment": "Confirm bundle suggestion",
+      "bundle_list": "Show recommended bundles",
+      "next_step": "Allow user to add bundle items"
+    },
+    "follow_up_routes": [
+      "ecommerce_checkout_guest",
+      "ecommerce_checkout_signed_in"
+    ]
+  },
+  {
+    "intent_name": "ecommerce_checkout_guest",
+    "intent_description": "Process checkout for a guest user.",
+    "category": "ecommerce_checkout",
+    "required_entities": ["cart_items", "shipping_address", "payment_info"],
+    "optional_entities": ["promo_code"],
+    "trigger_phrases": [
+      "Checkout as guest",
+      "Guest checkout",
+      "Buy without account",
+      "Quick checkout"
+    ],
+    "guardrails": [
+      "Validate payment method",
+      "Confirm shipping address format"
+    ],
+    "response_structure": {
+      "acknowledgment": "Confirm checkout started",
+      "summary": "Show cart and order summary",
+      "payment_processing": "Process payment securely",
+      "confirmation": "Provide order confirmation details"
+    },
+    "follow_up_routes": [
+      "ecommerce_order_confirmation_view"
+    ]
+  },
+  {
+    "intent_name": "ecommerce_checkout_signed_in",
+    "intent_description": "Process checkout for a signed-in user.",
+    "category": "ecommerce_checkout",
+    "required_entities": ["cart_items", "payment_method"],
+    "optional_entities": ["shipping_address_override", "promo_code"],
+    "trigger_phrases": [
+      "Checkout now",
+      "Complete my order",
+      "Buy these items",
+      "Use my account"
+    ],
+    "guardrails": [
+      "Confirm saved payment info",
+      "Offer shipping options from profile"
+    ],
+    "response_structure": {
+      "acknowledgment": "Confirm checkout process",
+      "summary": "Show order summary with discounts",
+      "payment_processing": "Process payment securely",
+      "confirmation": "Display order number and receipt"
+    },
+    "follow_up_routes": [
+      "ecommerce_order_confirmation_view"
+    ]
+  },
+  {
+    "intent_name": "ecommerce_shipping_address_edit",
+    "intent_description": "Allow user to edit their shipping address.",
+    "category": "ecommerce_profile",
+    "required_entities": ["new_shipping_address"],
+    "optional_entities": ["address_label"],
+    "trigger_phrases": [
+      "Change shipping address",
+      "Update my address",
+      "Edit delivery location",
+      "Shipping info change"
+    ],
+    "guardrails": [
+      "Validate address format",
+      "Warn if order already shipped"
+    ],
+    "response_structure": {
+      "acknowledgment": "Confirm address update",
+      "summary": "Show updated shipping info",
+      "next_step": "Offer review or continue checkout"
+    },
+    "follow_up_routes": [
+      "ecommerce_checkout_signed_in",
+      "ecommerce_order_tracking_link"
+    ]
+  }
+]
