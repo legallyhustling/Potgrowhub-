@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PotGrowHub | The Socket V6.0</title>
+    
+    <meta name="description" content="PotGrowHub: The world's first AI-powered, voice-controlled, 3D Print-on-Demand cannabis concierge. Design bongs, grow rooms, and get Kush delivered to your Tush. End-to-end one-stop hemp shop.">
+    <meta name="keywords" content="Cannabis, Marijuana, 3D PoD, AR, VR, AI Budtender, Dropshipping, Seed to Smoke, Grow Room Design">
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIlBvdEdyb3dIdWIiLAogICJzaG9ydF9uYW1lIjogIlBIUiIsCiAgInN0YXJ0X3VybCI6ICIuIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjMDcwNzA3IiwKICAidGhlbWVfY29sb3I6ICIjMDBmZjY0Igp9">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/18.6.4/tween.umd.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Bungee&display=swap" rel="stylesheet">
+    
+    <style>
+        :root { --neon-green: #00ff64; --hot-pink: #ff007a; --glass: rgba(255, 255, 255, 0.05); --brutal-shadow: 10px 10px 0px #000; }
+        
+        body { background: #070707; color: white; font-family: 'Space Grotesk', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
+        h1, h2, h3 { font-family: 'Bungee', cursive; }
+
+        /* NEO-BRUTALISM & GLASSMORPHISM */
+        .brutal-card { background: #111; border: 4px solid white; box-shadow: 8px 8px 0px var(--neon-green); transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .brutal-card:hover { transform: translate(-4px, -4px); box-shadow: 12px 12px 0px var(--hot-pink); }
+        
+        .glass-ui { background: var(--glass); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1); border-radius: 24px; }
+        
+        /* GANJA GODDESS PUFFS */
+        .smoke-puff { position: absolute; opacity: 0; pointer-events: none; animation: puffUp 5s forwards ease-out; color: var(--neon-green); font-weight: bold; text-shadow: 0 0 10px var(--neon-green); z-index: 50; }
+        @keyframes puffUp {
+            0% { transform: translateY(0) scale(0.5) rotate(0deg); opacity: 1; filter: blur(0px); }
+            100% { transform: translateY(-300px) scale(4) rotate(20deg); opacity: 0; filter: blur(30px); }
+        }
+
+        /* DATA STREAM TERMINAL */
+        .terminal { background: #000; border: 1px solid #222; font-size: 0.65rem; color: #00ff64; height: 120px; overflow-y: auto; scrollbar-width: none; }
+        .terminal::-webkit-scrollbar { display: none; }
+
+        /* INTERACTIVE 3D AREA */
+        #canvas-container { height: 500px; width: 100%; border-radius: 20px; position: relative; background: radial-gradient(circle, #111 0%, #000 100%); overflow: hidden; }
+
+        /* ANIMATIONS */
+        .float { animation: floating 3s ease-in-out infinite; }
+        @keyframes floating { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        
+        /* CUSTOM BUTTONS */
+        .cta-btn { background: var(--neon-green); color: black; border: 3px solid black; box-shadow: 4px 4px 0px white; font-weight: 900; text-transform: uppercase; transition: 0.2s; }
+        .cta-btn:hover { box-shadow: 0px 0px 0px white; transform: translate(4px, 4px); background: white; }
+
+        .onboarding-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 999; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(10px); }
+    </style>
+</head>
+<body class="p-2 md:p-6 lg:p-10">
+
+    <div id="onboarding" class="onboarding-overlay">
+        <div class="glass-ui p-10 max-w-lg text-center brutal-card border-none">
+            <h2 class="text-4xl mb-4 text-green-400">The Seed is Planted</h2>
+            <p class="mb-6 italic text-sm">"3000 score and a billion eons ago a galaxy got stoned..."</p>
+            <p class="text-xs mb-8 text-neutral-400">Welcome to the Socket. We've mixed Willie, Snoop, Tupac, Bruce, and Lennon into one engine. Are you ready to hustle?</p>
+            <button onclick="dismissOnboarding()" class="cta-btn px-8 py-3 w-full">I'm 18+ & Ready to Grind</button>
+        </div>
+    </div>
+
+    <header class="mb-10 flex flex-col items-center">
+        <div class="flex items-center gap-4 mb-2">
+            <div class="w-12 h-12 bg-white flex items-center justify-center rounded-br-2xl brutal-card" style="box-shadow: 4px 4px 0 var(--neon-green)">
+                <span class="text-black font-black text-2xl">PH</span>
+            </div>
+            <h1 class="text-5xl md:text-7xl italic tracking-tighter uppercase">PotGrowHub</h1>
+        </div>
+        <div class="bg-white text-black px-4 py-1 font-black text-xs uppercase tracking-[0.3em] float">
+            The World is Your Grow Room
+        </div>
+    </header>
+
+    <section class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <div class="glass-ui p-4 text-center border-b-4 border-green-500">
+            <p class="text-[10px] uppercase text-neutral-400">Network Status</p>
+            <p class="font-bold text-green-400">SOCKET_ACTIVE</p>
+        </div>
+        <div class="glass-ui p-4 text-center border-b-4 border-pink-500">
+            <p class="text-[10px] uppercase text-neutral-400">Total 'Budz' Earned</p>
+            <p class="font-bold">4.20K</p>
+        </div>
+        <div class="glass-ui p-4 text-center border-b-4 border-blue-500">
+            <p class="text-[10px] uppercase text-neutral-400">Auto-Procurement</p>
+            <p class="font-bold">SYNCED</p>
+        </div>
+        <div class="glass-ui p-4 text-center border-b-4 border-yellow-500">
+            <p class="text-[10px] uppercase text-neutral-400">Global Reach</p>
+            <p class="font-bold">200+ NODES</p>
+        </div>
+    </section>
+
+    <main class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <div class="lg:col-span-4 space-y-6">
+            <div class="brutal-card p-6 relative overflow-hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <span class="bg-black text-green-400 border border-green-400 px-3 py-1 text-[10px] uppercase font-black">Multi-Modal AI</span>
+                    <i data-lucide="zap" class="text-green-400 w-4 h-4 fill-current"></i>
+                </div>
+
+                <div class="relative h-80 w-full bg-neutral-900 mb-6 rounded-xl border-2 border-white/20 group cursor-pointer" onclick="triggerPuff('Stay Lit!')">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                         <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=GanjaGoddess&mouth=smile&eyes=eyeroll" 
+                              class="h-64 filter hue-rotate-90 brightness-75 group-hover:brightness-110 transition duration-700" 
+                              id="goddess-img">
+                    </div>
+                    <div id="puff-anchor" class="absolute top-1/4 left-1/2"></div>
+                </div>
+
+                <div class="chat-area space-y-4 mb-6 p-4 bg-black/50 rounded-lg border border-white/5" id="ai-responses">
+                    <div class="flex gap-2">
+                        <div class="w-2 h-2 rounded-full bg-green-500 mt-2"></div>
+                        <p class="text-xs text-green-400 italic font-medium leading-relaxed">
+                            "Peace, hustler. I'm the GanjaGoddess—a slice of Willie, Snoop, and Lee. I'm analyzing the hemp regs in your geo-fence now. What are we manifesting today?"
+                        </p>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3 glass-ui p-3">
+                        <input type="text" id="userInput" placeholder="Vibe your idea here..." class="bg-transparent text-sm w-full outline-none border-none">
+                        <div class="flex gap-2">
+                            <label for="file-upload" class="cursor-pointer hover:text-green-400"><i data-lucide="paperclip" class="w-5 h-5"></i></label>
+                            <input id="file-upload" type="file" class="hidden" onchange="ingestFile(this)">
+                            <button onclick="handleVoice()"><i data-lucide="mic" class="w-5 h-5 hover:text-pink-500"></i></button>
+                            <button onclick="handleChat()" class="text-green-400"><i data-lucide="arrow-right-circle" class="w-6 h-6"></i></button>
+                        </div>
+                    </div>
+                    <div class="terminal p-3 rounded" id="dataTerminal">
+                        > SYSTEM_BOOT_COMPLETE<br>
+                        > LOADING_SLANG_PACKS...<br>
+                        > GEOLOCATING_PLUGS... DONE.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lg:col-span-5 space-y-6">
+            <div class="glass-ui p-8 brutal-card">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl">Design Canvas</h3>
+                    <div class="flex gap-2">
+                        <button class="bg-neutral-800 p-2 rounded hover:bg-green-500 hover:text-black transition" onclick="rotateModel()"><i data-lucide="rotate-cw" class="w-4 h-4"></i></button>
+                        <button class="bg-neutral-800 p-2 rounded hover:bg-blue-500 transition" onclick="toggleAR()"><i data-lucide="view" class="w-4 h-4"></i></button>
+                    </div>
+                </div>
+
+                <div id="canvas-container">
+                    <div id="three-mount"></div>
+                    <div class="absolute bottom-4 right-4 z-20">
+                        <p class="text-[9px] text-white/50 uppercase tracking-widest bg-black/50 px-2 py-1">Biodegradable Eco-Resin Model v1.2</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+                    <div class="flex flex-col gap-1">
+                        <span class="text-[8px] uppercase text-neutral-500">Geometry</span>
+                        <select id="geoSelect" onchange="updateGeometry()" class="text-[10px]">
+                            <option value="bong">Bong Master</option>
+                            <option value="pipe">Sleek Pipe</option>
+                            <option value="shelf">Grow Shelf</option>
+                            <option value="bracket">L-Bracket</option>
+                        </select>
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <span class="text-[8px] uppercase text-neutral-500">Texture</span>
+                        <select id="textureSelect" class="text-[10px]">
+                            <option value="glass">Clear Glass</option>
+                            <option value="bud">Frosted Bud</option>
+                            <option value="matte">Matte Stealth</option>
+                        </select>
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <span class="text-[8px] uppercase text-neutral-500">Print Mode</span>
+                        <select class="text-[10px]">
+                            <option>PLA Sustainable</option>
+                            <option>Hemp Filament</option>
+                        </select>
+                    </div>
+                    <button class="bg-white text-black font-black text-[10px] uppercase h-full flex items-center justify-center hover:bg-green-400" onclick="triggerPuff('Model Finalized!')">Lock Design</button>
+                </div>
+            </div>
+
+            <div class="brutal-card p-6 bg-pink-600 text-white">
+                <div class="flex items-center gap-4">
+                    <div class="bg-black p-3"><i data-lucide="search"></i></div>
+                    <div>
+                        <h4 class="font-black text-lg uppercase leading-none">Global Semantic Search</h4>
+                        <p class="text-xs mt-1">Search anything cannabis. We rank #1 on the planet.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lg:col-span-3 space-y-6">
+            <div class="brutal-card p-6 bg-white text-black">
+                <h3 class="font-black text-2xl uppercase mb-4 italic">The Socket</h3>
+                <div class="space-y-5">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="font-black text-xs uppercase">Automatic Dropshipping</p>
+                            <p class="text-[10px] text-neutral-500">TikTok / FB / Shopify Integrated</p>
+                        </div>
+                        <div class="w-2 h-2 bg-green-500 rounded-full animate-ping"></div>
+                    </div>
+                    
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-xs"><span>Active Campaigns</span><span class="font-black">12</span></div>
+                        <div class="w-full bg-neutral-200 h-1"><div class="bg-green-500 h-full w-[80%]"></div></div>
+                    </div>
+
+                    <div class="border-2 border-dashed border-black p-4">
+                        <p class="text-[10px] uppercase font-bold text-neutral-400 mb-2">Live Procurement</p>
+                        <div id="procurement-feed" class="text-[10px] font-mono leading-tight space-y-1">
+                            <p>> Locating biodegradable resin...</p>
+                            <p>> Found: $12.40/kg (Eco-Source)</p>
+                            <p>> Finalizing 3DPoD Route...</p>
+                        </div>
+                    </div>
+
+                    <button class="w-full bg-black text-white p-4 font-black uppercase tracking-tighter hover:bg-green-600 flex items-center justify-center gap-2">
+                        <i data-lucide="shopping-cart" class="w-4 h-4"></i> Procure & Ship
+                    </button>
+                </div>
+            </div>
+
+            <div class="glass-ui p-6 brutal-card border-none bg-green-500/10">
+                <p class="text-xs uppercase font-black text-green-400 mb-2">Hustle Wisdom</p>
+                <p class="text-xs leading-relaxed italic" id="slang-box">"Don't worry about the legal aspect if the user is the buyer. We are just the Socket. Connect the dots and get paid."</p>
+                <button onclick="newWisdom()" class="mt-4 text-[9px] underline">Next Hustle Tip</button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="mt-20 border-t-2 border-white/10 pt-10 grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div class="space-y-4">
+            <h5 class="font-black text-xl uppercase">The Legend Ecosystem</h5>
+            <p class="text-xs text-neutral-400 leading-relaxed">Infused with the spirits of Willie, Snoop, Tupac, Bruce, and Lennon. We are the ray-of-all-trades. No home base. Just the internet, a little weed, and a lot of hustle.</p>
+        </div>
+        <div class="flex flex-col gap-2 uppercase text-xs font-bold">
+            <a href="#" class="hover:text-green-400">Seeds to Soil</a>
+            <a href="#" class="hover:text-pink-400">Kush to Tush</a>
+            <a href="#" class="hover:text-blue-400">3D Design Hub</a>
+            <a href="#" class="hover:text-yellow-400">Legal Guidance Socket</a>
+        </div>
+        <div class="flex justify-end gap-6 text-neutral-500">
+            <i data-lucide="instagram" class="hover:text-white cursor-pointer"></i>
+            <i data-lucide="twitter" class="hover:text-white cursor-pointer"></i>
+            <i data-lucide="youtube" class="hover:text-white cursor-pointer"></i>
+            <i data-lucide="github" class="hover:text-white cursor-pointer"></i>
+        </div>
+    </footer>
+
+<script>
+    // CORE INITIALIZATION
+    lucide.createIcons();
+
+    function dismissOnboarding() {
+        document.getElementById('onboarding').style.display = 'none';
+        log('User authenticated. Vibe check passed.');
+    }
+
+    // TERMINAL LOGGING
+    const term = document.getElementById('dataTerminal');
+    function log(msg) {
+        const div = document.createElement('div');
+        div.innerHTML = `> ${msg}`;
+        term.prepend(div);
+        if(term.childNodes.length > 20) term.lastChild.remove();
+    }
+
+    // 3D SCENE CONFIGURATION
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    const mount = document.getElementById('three-mount');
+    
+    const containerSize = document.getElementById('canvas-container').clientWidth;
+    renderer.setSize(containerSize, 500);
+    mount.appendChild(renderer.domElement);
+
+    // Initial Model: The Bong
+    let currentModel;
+    function createBong() {
+        if(currentModel) scene.remove(currentModel);
+        const group = new THREE.Group();
+        
+        const base = new THREE.Mesh(
+            new THREE.CylinderGeometry(1.5, 2.5, 3, 32),
+            new THREE.MeshStandardMaterial({ color: 0x00ff64, roughness: 0.1, metalness: 0.5, transparent: true, opacity: 0.7 })
+        );
+        const neck = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.8, 0.8, 6, 32),
+            new THREE.MeshStandardMaterial({ color: 0xffffff, transparent: true, opacity: 0.5 })
+        );
+        neck.position.y = 4;
+        group.add(base);
+        group.add(neck);
+        currentModel = group;
+        scene.add(currentModel);
+    }
+
+    createBong();
+
+    const light = new THREE.PointLight(0xffffff, 1, 100);
+    light.position.set(10, 10, 10);
+    scene.add(light);
+    scene.add(new THREE.AmbientLight(0x404040, 2));
+
+    camera.position.z = 12;
+    camera.position.y = 3;
+
+    function animate() {
+        requestAnimationFrame(animate);
+        if(currentModel) currentModel.rotation.y += 0.01;
+        renderer.render(scene, camera);
+    }
+    animate();
+
+    function updateGeometry() {
+        const val = document.getElementById('geoSelect').value;
+        log(`Updating Geometry to: ${val.toUpperCase()}`);
+        triggerPuff(`Switching to ${val}...`);
+        // Add actual geometry switching logic here
+    }
+
+    // INTERACTIVE PUFF SYSTEM
+    function triggerPuff(text) {
+        const anchor = document.getElementById('puff-anchor');
+        const puff = document.createElement('div');
+        puff.className = 'smoke-puff';
+        puff.innerText = text;
+        puff.style.left = (Math.random() * 100 - 50) + 'px';
+        anchor.appendChild(puff);
+        setTimeout(() => puff.remove(), 5000);
+    }
+
+    // CHAT & FILE SYSTEM
+    function handleChat() {
+        const input = document.getElementById('userInput');
+        const val = input.value;
+        if(!val) return;
+        
+        log(`Inquiry: ${val}`);
+        triggerPuff(val);
+        
+        const res = document.getElementById('ai-responses');
+        const userMsg = document.createElement('p');
+        userMsg.className = "text-[10px] text-white/40 uppercase font-black";
+        userMsg.innerText = `You: ${val}`;
+        
+        const goddessMsg = document.createElement('p');
+        goddessMsg.className = "text-xs text-green-300 italic";
+        goddessMsg.innerText = "Goddess: \"That's smooth. I'm crunching the data. Based on Snoop's logic, we should automate the procurement now. It's ready in your cart.\"";
+        
+        res.appendChild(userMsg);
+        res.appendChild(goddessMsg);
+        input.value = "";
+        res.scrollTop = res.scrollHeight;
+    }
+
+    function ingestFile(input) {
+        if(input.files && input.files[0]) {
+            log(`ANALYZING_FILE: ${input.files[0].name}`);
+            triggerPuff("File Uploaded!");
+            setTimeout(() => {
+                log("FILE_ANALYSIS_COMPLETE: Logic integrated into Budtender.");
+            }, 1500);
+        }
+    }
+
+    const wisdom = [
+        "Be like water, but smoke like fire.",
+        "The hustle is the seed; the profit is the bud.",
+        "Don't chase customers, build a socket and let them plug in.",
+        "Peace is the goal, but the grind gets you there.",
+        "Sustainability is the only endgame. Use hemp or stay home."
+    ];
+
+    function newWisdom() {
+        const box = document.getElementById('slang-box');
+        box.innerText = `"${wisdom[Math.floor(Math.random()*wisdom.length)]}"`;
+        triggerPuff("Knowledge Drop!");
+    }
+
+    // AUTO-PROCURE SIMULATOR
+    setInterval(() => {
+        const actions = [
+            "Syncing with Shopify API...",
+            "Checking legal updates in Oregon...",
+            "Adjusting PPC for '3D Bongs'...",
+            "New customer acquired via TikTok...",
+            "Lowest price for Glass found: $8.50"
+        ];
+        log(actions[Math.floor(Math.random()*actions.length)]);
+    }, 7000);
+</script>
+</body>
+</html>
